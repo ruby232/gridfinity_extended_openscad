@@ -60,10 +60,11 @@ roundedCorners = 15) {
                 // Esto es para agregar tornillo
                 if ($gc_is_corner.x && $gc_is_corner.y) {
                     x_offset = $gci.x > 0 ? 38 - weightDepth + minFloorThickness : weightDepth + minFloorThickness + 2;
-                    translate([x_offset, 21, 0])
+                    translate([x_offset, 21, 1.3])
                         difference() {
-                            cube([12, 16, 6], center = true);
-                            cylinder(r1 = 3, r2 = 6, h = 6);
+                            cube([12, 16, 2.7], center = true);
+                            translate([0, 0, -1.3])
+                                cylinder(r1 = 1.5, r2 = 3, h = 2.7);
                         }
                 }
 
