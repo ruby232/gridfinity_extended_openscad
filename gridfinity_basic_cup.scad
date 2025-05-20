@@ -5,11 +5,11 @@
 // https://www.printables.com/model/630057-gridfinity-extended-openscad
 //
 // Documentation
-// https://docs.ostat.com/docs/openscad/gridfinity-extended/basic-cup.html
+// https://docs.ostat.com/docs/openscad/gridfinity-extended/basic-cup
 
 include <modules/gridfinity_constants.scad>
 use <modules/module_gridfinity_cup.scad>
-use <modules/module_gridfinity.scad>
+use <modules/module_gridfinity_block.scad>
 
 /*<!!start gridfinity_basic_cup!!>*/
 /* [General Cup] */
@@ -28,13 +28,19 @@ headroom = 0.8; // 0.1
 
 /* [Cup Lip] */
 // Style of the cup lip
-lip_style = "normal";  // [ normal, reduced, minimum, none:not stackable ]
+lip_style = "normal";  // [ normal, reduced, reduced_double, minimum, none:not stackable ]
 // Below this the inside of the lip will be reduced for easier access.
 lip_side_relief_trigger = [1,1]; //0.1
-// Create a relie
+// Create a relief in the lip
 lip_top_relief_height = -1; // 0.1
+// how much of the lip to retain on each end
+lip_top_relief_width = -1; // 0.1
 // add a notch to the lip to prevent sliding.
 lip_top_notches  = true;
+// enable lip clip for connection cups
+lip_clip_position = "disabled"; //[disabled, intersection, center_wall, both]
+//allow stacking when bin is not multiples of 42
+lip_non_blocking = false;
 
 /* [Subdivisions] */
 chamber_wall_thickness = 1.2;
@@ -116,7 +122,7 @@ flat_base_rounded_radius = -1;
 flat_base_rounded_easyPrint = -1;
 
 /* [Label] */
-label_style = "normal"; //[disabled: no label, normal:normal, gflabel:gflabel basic label, pred:pred - labels by pred, cullenect:Cullenect click labels V2,  cullenect_legacy:Cullenect click labels v1]
+label_style = "disabled"; //[disabled: no label, normal:normal, gflabel:gflabel basic label, pred:pred - labels by pred, cullenect:Cullenect click labels V2,  cullenect_legacy:Cullenect click labels v1]
 // Include overhang for labeling (and specify left/right/center justification)
 label_position = "left"; // [left, right, center, leftchamber, rightchamber, centerchamber]
 // Width, Depth, Height, Radius. Width in Gridfinity units of 42mm, Depth and Height in mm, radius in mm. Width of 0 uses full width. Height of 0 uses Depth, height of -1 uses depth*3/4. 
@@ -357,7 +363,10 @@ gridfinity_cup(
     lipStyle=lip_style, 
     lipSideReliefTrigger=lip_side_relief_trigger, 
     lipTopReliefHeight=lip_top_relief_height, 
-    lipNotch=lip_top_notches),
+    lipTopReliefWidth=lip_top_relief_width, 
+    lipNotch=lip_top_notches,
+    lipClipPosition=lip_clip_position,
+    lipNonBlocking=lip_non_blocking),
   headroom=headroom,
   tapered_corner=tapered_corner,
   tapered_corner_size = tapered_corner_size,

@@ -5,12 +5,12 @@
 // https://www.printables.com/model/630057-gridfinity-extended-openscad
 //
 // Documentation
-// https://docs.ostat.com/docs/openscad/gridfinity-extended/basic-cup.html
+// https://docs.ostat.com/docs/openscad/gridfinity-extended/basic-cup
 
 include <modules/gridfinity_constants.scad>
 include <modules/module_gridfinity_sliding_lid.scad>
 use <modules/module_gridfinity_cup.scad>
-use <modules/module_gridfinity.scad>
+use <modules/module_gridfinity_block.scad>
 
 /* [Sliding Lid] */
 // select what to render

@@ -6,7 +6,7 @@
 // The design has deviated significantly, I would not consider this compatible with the original.
 
 use <modules/module_gridfinity_cup.scad>
-use <modules/module_gridfinity.scad>
+use <modules/module_gridfinity_block.scad>
 use <modules/module_gridfinity_baseplate.scad>
 include <modules/gridfinity_constants.scad>
 include <modules/polyround.scad>
@@ -324,7 +324,7 @@ module chest(
           num_y=drawerInnerUnitSize.y, 
           num_z=baseHeight, 
           position = "zero",
-          lipStyle = "none",    //"minimum" "none" "reduced" "normal"
+          lipStyle = "none",    //"minimum" "none" "reduced" "reduced_double" "normal"
           filledin = "disabled", //[disabled, enabled, enabledfilllip]
           cupBase_settings = CupBaseSettings(
             magnetSize=[bottomMagnetDiameter, 2.6], 
@@ -466,8 +466,8 @@ module chestCutouts(
           holeHeight = wallPattern_thickness,
           center=true,
           fill=wallPatternFill, //"none", "space", "crop"
-          voronoiNoise=wallPatternVoronoiNoise,
-          voronoiRadius = wallPatternVoronoiRadius);
+          patternVoronoiNoise=wallPatternVoronoiNoise,
+          holeRadius = wallPatternVoronoiRadius);
    
   color(colour_chest) 
   if(drawerSlideWidth > 0 && drawerCount > 1)

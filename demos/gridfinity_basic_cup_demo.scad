@@ -1,4 +1,4 @@
-// include <module_gridfinity.scad>
+// include <module_gridfinity_block.scad>
 use <../gridfinity_basic_cup.scad>
 use <../modules/module_gridfinity_cup.scad>
 include <../modules/functions_general.scad>
@@ -229,6 +229,7 @@ function getScenario(scenario) =
   : scenario == "lip_style" ? [["Lip Style",4,[],[[icutx, 0.5]]],
       ["normal", [[ilip_style, "normal"]]],
       ["reduced", [[ilip_style, "reduced"]]],
+      ["reduced_double", [[ilip_style, "reduced_double"]]],
       ["minimum", [[ilip_style, "minimum"]]],
       ["none, not stackable", [[ilip_style, "none"]]]]
       
